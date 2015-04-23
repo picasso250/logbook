@@ -17,5 +17,5 @@ function add()
     }
     $data = ['text' => $t];
     $id = Service('db')->insert('logbook', $data);
-    echo json(compact('id'));
+    echo json(['url' => '/']);
 }

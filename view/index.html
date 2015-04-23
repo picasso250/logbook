@@ -18,7 +18,7 @@
 <?php foreach ($logs as $log): ?>
 	<li>
 		<div class="date"><?= $log['create_time'] ?></div>
-		<div><?= nl2br($log['text']) ?></div>
+		<div><?= nl2br(htmlspecialchars($log['text'])) ?></div>
 	</li>
 <?php endforeach ?>
 <script type="text/javascript" src="/assets/jquery-2.0.3.js"></script>
