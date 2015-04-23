@@ -4,8 +4,9 @@ namespace action;
 
 function index()
 {
+    $logs = Service('db')->queryAll("SELECT * from logbook order by id desc");
     $render = Service('render');
-    $render('index.html');
+    $render('index.html', compact('logs'));
 }
 function add()
 {
