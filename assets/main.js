@@ -4,7 +4,6 @@ $(function () {
     e.preventDefault();
     var $this = $(this);
     var $btn = $(this).find('button[type=submit]');
-    $btn.button('loading');
     $.post($this.attr('action'), $this.serialize(), function (ret) {
       if (ret.code === 0) {
         if (ret.data && ret.data.url) {
@@ -12,7 +11,6 @@ $(function () {
           return;
         }
       }
-      $btn.button('reset');
       alert.removeClass('alert-hidden').text(ret.message);
     }, 'json');
   });
