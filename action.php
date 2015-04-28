@@ -12,10 +12,11 @@ function add()
 {
     $t = _post('t');
     if (empty($t)) {
-        echo json(1, 'empty');
         return;
     }
     $data = ['text' => $t];
     $id = Service('db')->insert('logbook', $data);
-    echo json(['url' => '/']);
+    $log = Service('db')->get_logbook_by_id($id);
+    $render = Service('render');
+    $render('log.html', compact('log'));
 }

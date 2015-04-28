@@ -15,12 +15,9 @@
 	<textarea name="t"></textarea>
 	<button type="submit">ok</button>
 </form>
-<?php foreach ($logs as $log): ?>
-	<li>
-		<div class="date"><?= $log['create_time'] ?></div>
-		<div><?= nl2br(htmlspecialchars($log['text'])) ?></div>
-	</li>
-<?php endforeach ?>
+<ul id="MainList">
+<?php foreach ($logs as $log) include 'log.html' ?>
+</ul>
 <script type="text/javascript" src="/assets/jquery-2.0.3.js"></script>
 <script type="text/javascript" src="/assets/main.js?v="></script>
 </body>
