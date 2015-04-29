@@ -7,6 +7,9 @@ require __DIR__.'/action.php';
 
 $config = require_config(__DIR__.'/config.php');
 Service('config', $config);
+
+define('STATIC_VERSION', $config['static']['version']);
+
 $dbc = $config['db'];
 Service('db', new xiaochi\DB($dbc['dsn'], $dbc['username'], $dbc['password']));
 Service('render', function () {

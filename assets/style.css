@@ -2,8 +2,10 @@
 	font-size: small;
 	color: grey;
 }
-header {
-	position: fixed;
-	right: 0;
-	padding-right: 9px;
+@media screen and (min-width:900px) {
+	header {
+		position: fixed;
+		right: 0;
+		padding-right: 9px;
+	}
 }
