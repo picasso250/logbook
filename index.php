@@ -21,5 +21,6 @@ Service('render', function () {
 $app = new ptf\App([
     ['/', 'action\\index'],
     ['/add', 'action\\add'],
+    ['/my', 'action\\my'],
 ]);
 $app->run();
