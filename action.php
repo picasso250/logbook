@@ -2,7 +2,7 @@
 
 namespace action;
 
-use ptf\DB;
+use xiaochi\DB;
 
 function index()
 {
