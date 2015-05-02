@@ -6,32 +6,12 @@ use ptf\DB;
 
 function index()
 {
-    $sql = "SELECT * from logbook where user_id=0 order by id desc limit 100";
+    $n = 100;
+    $sql = "SELECT * from logbook where user_id=0 or is_show=1 order by id desc limit $n";
     $logs = Service('db')->queryAll($sql);
-    $sql = "SELECT * from logbook where is_show=0 group by user_id order by user_id desc, create_time desc";
-    $all_user = Service('db')->queryAll($sql);
-    $sql = "SELECT * from logbook where is_show=1 group by user_id order by user_id desc, create_time desc";
-    $latest = Service('db')->queryAll($sql);
-    $logs = array_merge($logs, $latest);
-    usort($logs, function($a, $b) {return strcmp($a['create_time'], $b['create_time']);});
-
-    $latest_keys = [];
-    foreach ($latest as $row) {
-        $latest_keys[$row['id']] = $row;
+    if (count($logs) === $n && mt_rand() % 1000 === 0) {
+        Service('db')->execute("DELETE from logbook where id < ? and is_show=1", end(logs)['id']);
     }
-    $all_user_keys[];
-    foreach ($all_user as $row) {
-        $id = $row['id'];
-        if (!isset($latest_keys[$id])) {
-            secret_log($row);
-        } else {
-            $old = $latest_keys[$id];
-            if ($row['create_time'] != $old['create_time']) {
-                secret_log($row);
-            }
-        }
-    }
-
     $render = Service('render');
     $render('index.html', compact('logs'));
 }
@@ -47,6 +27,7 @@ function add()
         'create_time' => DB::timestamp(),
     ];
     $id = Service('db')->insert('logbook', $data);
+    secret_log($data);
     $log = Service('db')->get_logbook_by_id($id);
     $render = Service('render');
     $render('log.html', compact('log'));
@@ -55,7 +36,8 @@ function add()
 function my ()
 {
     $user_id = user_id();
-    $logs = Service('db')->queryAll("SELECT * from logbook where user_id=? order by id desc", [$user_id]);
+    $sql = "SELECT * from logbook where user_id=? and is_show=0 order by id desc";
+    $logs = Service('db')->queryAll($sql, [$user_id]);
     $render = Service('render');
     $render('index.html', compact('logs'));
 }
