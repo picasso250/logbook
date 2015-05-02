@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__.'/PHP-tiny/autoload.php';
+require __DIR__.'/PHP-tiny/ptf/account.php';
 require __DIR__.'/xiaochi-db/src/DB.php';
 
 require __DIR__.'/action.php';
@@ -18,9 +19,11 @@ Service('render', function () {
     return $render;
 });
 
+user_id(1);
+
 $app = new ptf\App([
-    ['/', 'action\\index'],
+    ['/',    'action\\index'],
     ['/add', 'action\\add'],
-    ['/my', 'action\\my'],
+    ['/my',  'action\\my'],
 ]);
 $app->run();
