@@ -42,6 +42,13 @@ function my ()
     $render('index.html', compact('logs'));
 }
 
+function login()
+{
+    $user_id = _get('user_id');
+    user_id($user_id);
+    redirect('/');
+}
+
 // ==== logic ====
 
 function mask($str, $n)
@@ -65,8 +72,6 @@ function is_out_date($two)
 }
 function secret_log($data)
 {
-    $sql = "DELETE from logbook where user_id=? and is_show=1";
-    Service('db')->execute($sql, [$data['user_id']]);
     unset($data['id']);
     $data['is_show'] = 1;
     $text = $data['text'];

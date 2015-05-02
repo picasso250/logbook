@@ -18,12 +18,12 @@ Service('render', function () {
     $render->root = __DIR__.'/view';
     return $render;
 });
-
-user_id(1);
+session_start();
 
 $app = new ptf\App([
     ['/',    'action\\index'],
     ['/add', 'action\\add'],
     ['/my',  'action\\my'],
+    ['/login',  'action\\login'],
 ]);
 $app->run();
