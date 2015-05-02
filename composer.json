@@ -1,0 +1,5 @@
+{
+    "require": {
+        "bafs/testify": "dev-master"
+    }
+}
