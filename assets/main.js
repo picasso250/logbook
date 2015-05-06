@@ -7,6 +7,7 @@ $(function () {
     $.post($this.attr('action'), $this.serialize(), function (html) {
       console.log($('#MainList'))
       $('#MainList').prepend(html)
+      postForm.find('textarea').val('');
     }, 'html');
   });
 });
