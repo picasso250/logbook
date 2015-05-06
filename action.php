@@ -46,7 +46,7 @@ function login()
 {
     $user_id = _get('user_id');
     user_id($user_id);
-    redirect('/');
+    redirect('/my');
 }
 
 // ==== logic ====
