@@ -3,15 +3,17 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1" />
-	<title>x</title>
-	<link rel="stylesheet" type="text/css" href="/assets/style.css?v=<?= STATIC_VERSION ?>">
+	<title>航海日志</title>
+	<link rel="stylesheet" type="text/css" href="/assets/skeleton.css?v=<?= STATIC_VERSION ?>">
 </head>
 <body>
 <header>
 	<h1>航海日志</h1>
 </header>
 <form method="post" role="form" action="/add">
-	<textarea name="t"></textarea>
+  <div id="TAWrap">
+  	<textarea id="TA" name="t" class="u-full-width"></textarea>
+  </div>
 	<button type="submit">ok</button>
 </form>
 <ul id="MainList">
