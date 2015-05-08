@@ -10,4 +10,10 @@ $(function () {
       postForm.find('textarea').val('');
     }, 'html');
   });
+  $('#LoginBtn').on('click', function () {
+    var id = prompt("ur id");
+    if (id) {
+      window.location.href = '/login?user_id='+id
+    };
+  })
 });
